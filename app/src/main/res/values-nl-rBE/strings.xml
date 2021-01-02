@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NASA Project</string>
+    <string name="other">Andere</string>
+    <string name="mars">Mars</string>
+    <string name="favorites">Favorieten</string>
+    <string name="earth">Aarde</string>
+    <string name="picture_of_mars">Foto van Mars</string>
+    <string name="picture_of_earth">Foto van de Aarde</string>
+</resources>

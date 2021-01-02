@@ -24,6 +24,17 @@ public class APIRepo {
 
     public APIRepo(Context context){
         queue = Volley.newRequestQueue(context);
+        url = "https://api.nasa.gov/EPIC/api/natural/all?api_key=Lb7LHAfJEqP9slE5fulgsdezh2kNcojXUhJsZgiF";
+
+        if(context instanceof OnApiDataDownloadedCallback){
+            activityCallback = (OnApiDataDownloadedCallback) context;
+        } else {
+            throw new ClassCastException("Activity does not implement " + OnApiDataDownloadedCallback.class.getCanonicalName());
+        }
+    }
+
+    public void getAllDates(Context context){
+        queue = Volley.newRequestQueue(context);
         url = "https://api.nasa.gov/planetary/apod?date=2020-12-28&api_key=Lb7LHAfJEqP9slE5fulgsdezh2kNcojXUhJsZgiF";
 
         if(context instanceof OnApiDataDownloadedCallback){

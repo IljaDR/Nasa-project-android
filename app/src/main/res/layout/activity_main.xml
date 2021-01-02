@@ -28,7 +28,7 @@
                     android:layout_height="267dp"
                     android:layout_marginTop="28dp"
                     android:adjustViewBounds="false"
-                    android:contentDescription="Picture of Earth"
+                    android:contentDescription="@string/picture_of_earth"
                     android:cropToPadding="false"
                     android:onClick="startEarth"
                     android:padding="0dp"
@@ -46,7 +46,7 @@
                     android:layout_height="267dp"
                     android:layout_marginTop="28dp"
                     android:adjustViewBounds="false"
-                    android:contentDescription="Picture of Mars"
+                    android:contentDescription="@string/picture_of_mars"
                     android:cropToPadding="false"
                     android:padding="0dp"
                     android:scaleType="centerCrop"
@@ -98,7 +98,7 @@
                     android:layout_marginLeft="12dp"
                     android:layout_marginBottom="12dp"
                     android:fontFamily="@font/istok_web"
-                    android:text="Earth"
+                    android:text="@string/earth"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="@+id/EarthImageButton"
@@ -112,7 +112,7 @@
                     android:layout_marginLeft="12dp"
                     android:layout_marginBottom="12dp"
                     android:fontFamily="@font/istok_web"
-                    android:text="Favorites"
+                    android:text="@string/favorites"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="@+id/FavoritesImageButton"
@@ -126,7 +126,7 @@
                     android:layout_marginLeft="12dp"
                     android:layout_marginBottom="12dp"
                     android:fontFamily="@font/istok_web"
-                    android:text="Other"
+                    android:text="@string/other"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="@+id/OtherImageButton"
@@ -140,21 +140,11 @@
                     android:layout_marginLeft="12dp"
                     android:layout_marginBottom="12dp"
                     android:fontFamily="@font/istok_web"
-                    android:text="Mars"
+                    android:text="@string/mars"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="@+id/MarsImageButton"
                     app:layout_constraintStart_toStartOf="@+id/MarsImageButton" />
-
-                <TextView
-                    android:id="@+id/test"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TextView"
-                    android:textColor="#FFFFFF"
-                    android:textSize="24sp"
-                    tools:layout_editor_absoluteX="139dp"
-                    tools:layout_editor_absoluteY="130dp" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>

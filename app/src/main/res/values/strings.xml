@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">NASAProject</string>
+    <string name="app_name">NASA Project</string>
+    <string name="other">Other</string>
+    <string name="mars">Mars</string>
+    <string name="favorites">Favorites</string>
+    <string name="earth">Earth</string>
+    <string name="picture_of_mars">Picture of Mars</string>
+    <string name="picture_of_earth">Picture of Earth</string>
 </resources>

@@ -11,7 +11,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {EarthDate.class}, version = 1, exportSchema = false)
+@Database(entities = {EarthData.class}, version = 1, exportSchema = false)
 abstract class EarthRoomDatabase extends RoomDatabase {
 
     abstract EarthDateDao earthDateDao();
@@ -26,7 +26,7 @@ abstract class EarthRoomDatabase extends RoomDatabase {
             synchronized (EarthRoomDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            EarthRoomDatabase.class, "word_database")
+                            EarthRoomDatabase.class, "nasa_database")
                             .addCallback(sRoomDatabaseCallback)
                             .build();
                 }
@@ -48,10 +48,10 @@ abstract class EarthRoomDatabase extends RoomDatabase {
                 EarthDateDao dao = INSTANCE.earthDateDao();
                 dao.deleteAll();
 
-                EarthDate earthDate = new EarthDate("Hello");
-                dao.insert(earthDate);
-                earthDate = new EarthDate("test");
-                dao.insert(earthDate);
+//                EarthDate earthDate = new EarthDate("Hello");
+//                dao.insert(earthDate);
+//                earthDate = new EarthDate("test");
+//                dao.insert(earthDate);
             });
         }
     };

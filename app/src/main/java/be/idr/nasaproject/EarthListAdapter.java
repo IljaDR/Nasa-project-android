@@ -6,9 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
-public class EarthListAdapter extends ListAdapter<EarthDate, EarthViewHolder> {
+public class EarthListAdapter extends ListAdapter<EarthData, EarthViewHolder>  {
 
-    public EarthListAdapter(@NonNull DiffUtil.ItemCallback<EarthDate> diffCallback) {
+    public EarthListAdapter(@NonNull DiffUtil.ItemCallback<EarthData> diffCallback) {
         super(diffCallback);
     }
 
@@ -19,19 +19,19 @@ public class EarthListAdapter extends ListAdapter<EarthDate, EarthViewHolder> {
 
     @Override
     public void onBindViewHolder(EarthViewHolder holder, int position) {
-        EarthDate current = getItem(position);
+        EarthData current = getItem(position);
         holder.bind(current.getDate());
     }
 
-    static class WordDiff extends DiffUtil.ItemCallback<EarthDate> {
+    static class WordDiff extends DiffUtil.ItemCallback<EarthData> {
 
         @Override
-        public boolean areItemsTheSame(@NonNull EarthDate oldItem, @NonNull EarthDate newItem) {
+        public boolean areItemsTheSame(@NonNull EarthData oldItem, @NonNull EarthData newItem) {
             return oldItem == newItem;
         }
 
         @Override
-        public boolean areContentsTheSame(@NonNull EarthDate oldItem, @NonNull EarthDate newItem) {
+        public boolean areContentsTheSame(@NonNull EarthData oldItem, @NonNull EarthData newItem) {
             return oldItem.getDate().equals(newItem.getDate());
         }
     }

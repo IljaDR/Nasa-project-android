@@ -9,7 +9,7 @@ import java.util.List;
 class EarthRepository {
 
     private EarthDateDao earthDateDao;
-    private LiveData<List<EarthDate>> allDates;
+    private LiveData<List<EarthData>> allDates;
 
     EarthRepository(Application application){
         EarthRoomDatabase db = EarthRoomDatabase.getDatabase(application);
@@ -17,20 +17,20 @@ class EarthRepository {
         allDates = earthDateDao.getDateByRecency();
     }
 
-    LiveData<List<EarthDate>> getAllDates(){
+    LiveData<List<EarthData>> getAllDates(){
         return allDates;
     }
 
-    void insert(EarthDate earthDate){
+    void insert(EarthData earthData){
         EarthRoomDatabase.databaseWriteExecutor.execute(() -> {
-            earthDateDao.insert(earthDate);
+            earthDateDao.insert(earthData);
         });
     }
 
-    void insertList(List<EarthDate> earthDates){
-        for(EarthDate earthDate: earthDates){
+    void insertList(List<EarthData> earthData){
+        for(EarthData data : earthData){
             EarthRoomDatabase.databaseWriteExecutor.execute(() -> {
-                earthDateDao.insert(earthDate);
+                earthDateDao.insert(data);
             });
         }
     }

@@ -10,15 +10,15 @@ import java.util.List;
 
 @Dao
 public interface EarthDateDao {
-    @Query("SELECT * FROM earth_date ORDER BY date ASC")
-    LiveData<List<EarthDate>> getDateByRecency();
+    @Query("SELECT * FROM earth_data ORDER BY date DESC")
+    LiveData<List<EarthData>> getDateByRecency();
 
-    @Query("SELECT * FROM earth_date ORDER BY date ASC LIMIT 1")
-    LiveData<List<EarthDate>> getMostRecentDate();
+    @Query("SELECT * FROM earth_data ORDER BY date ASC LIMIT 1")
+    LiveData<List<EarthData>> getMostRecentDate();
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    void insert(EarthDate date);
+    void insert(EarthData date);
 
-    @Query("DELETE FROM earth_date")
+    @Query("DELETE FROM earth_data")
     void deleteAll();
 }

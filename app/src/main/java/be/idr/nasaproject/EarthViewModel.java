@@ -11,7 +11,7 @@ import java.util.List;
 public class EarthViewModel extends AndroidViewModel {
 
     private EarthRepository repository;
-    private final LiveData<List<EarthDate>> allDates;
+    private final LiveData<List<EarthData>> allDates;
 
     public EarthViewModel(@NonNull Application application) {
         super(application);
@@ -19,11 +19,11 @@ public class EarthViewModel extends AndroidViewModel {
         allDates = repository.getAllDates();
     }
 
-    LiveData<List<EarthDate>> getAllDates(){
+    LiveData<List<EarthData>> getAllDates(){
         return allDates;
     }
 
-    void insert(EarthDate earthDate){
-        repository.insert(earthDate);
+    void insert(EarthData earthData){
+        repository.insert(earthData);
     }
 }

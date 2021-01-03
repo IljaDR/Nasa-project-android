@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--https://developer.android.com/guide/navigation/navigation-ui#add_a_navigation_drawer-->
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#0E0E0E"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/EarthImageButton"
+                    android:layout_width="330dp"
+                    android:layout_height="266dp"
+                    android:layout_marginTop="32dp"
+                    android:adjustViewBounds="false"
+                    android:contentDescription="@string/picture_of_earth"
+                    android:cropToPadding="false"
+                    android:onClick="startEarth"
+                    android:padding="0dp"
+                    android:requiresFadingEdge="horizontal"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/earth"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.089"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+                <ImageButton
+                    android:id="@+id/MarsImageButton"
+                    android:layout_width="330dp"
+                    android:layout_height="266dp"
+                    android:layout_marginTop="32dp"
+                    android:adjustViewBounds="false"
+                    android:contentDescription="@string/picture_of_mars"
+                    android:cropToPadding="false"
+                    android:padding="0dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/mars"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.922"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+                <ImageButton
+                    android:id="@+id/OtherImageButton"
+                    android:layout_width="330dp"
+                    android:layout_height="266dp"
+                    android:layout_marginTop="28dp"
+                    android:adjustViewBounds="false"
+                    android:contentDescription="@string/picture_of_a_nebula"
+                    android:cropToPadding="false"
+                    android:hapticFeedbackEnabled="false"
+                    android:padding="0dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/nebula"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.088"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/EarthImageButton"
+                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+                <ImageButton
+                    android:id="@+id/FavoritesImageButton"
+                    android:layout_width="330dp"
+                    android:layout_height="266dp"
+                    android:layout_marginTop="28dp"
+                    android:adjustViewBounds="false"
+                    android:contentDescription="@string/picture_of_a_nebula"
+                    android:cropToPadding="false"
+                    android:padding="0dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/nebula"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.923"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/MarsImageButton"
+                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+                <TextView
+                    android:id="@+id/EarthText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginBottom="12dp"
+                    android:fontFamily="@font/istok_web"
+                    android:text="@string/earth"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/EarthImageButton"
+                    app:layout_constraintStart_toStartOf="@+id/EarthImageButton" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginBottom="12dp"
+                    android:fontFamily="@font/istok_web"
+                    android:text="@string/favorites"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/FavoritesImageButton"
+                    app:layout_constraintStart_toStartOf="@+id/FavoritesImageButton" />
+
+                <TextView
+                    android:id="@+id/OtherText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginBottom="12dp"
+                    android:fontFamily="@font/istok_web"
+                    android:text="@string/other"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/OtherImageButton"
+                    app:layout_constraintStart_toStartOf="@+id/OtherImageButton" />
+
+                <TextView
+                    android:id="@+id/MarsText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginBottom="12dp"
+                    android:fontFamily="@font/istok_web"
+                    android:text="@string/mars"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/MarsImageButton"
+                    app:layout_constraintStart_toStartOf="@+id/MarsImageButton" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

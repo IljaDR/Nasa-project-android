@@ -1,30 +1,24 @@
 package be.idr.nasaproject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.os.Debug;
 import android.util.Log;
 import android.widget.ImageView;
-
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
 public class Earth extends AppCompatActivity implements APIRepo.OnApiDataDownloadedCallback{
 
     private ImageView earthImage;
     private EarthViewModel earthViewModel;
+    private APIRepo apiRepo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,30 +40,53 @@ public class Earth extends AppCompatActivity implements APIRepo.OnApiDataDownloa
             adapter.submitList(dates);
         });
 
-        APIRepo apiRepo = new APIRepo(this);
-        apiRepo.getInfo();
+        apiRepo = new APIRepo(this);
+        apiRepo.getEarthDates();
     }
 
 
     @Override
     public void OnApiDataDownloaded(String data) {
-        Log.e("Dates","Went into API Downloaded function");
+        if(data.substring(0, 3).equals("all")){
+            getEarthByDate(data.substring(3));
+        }
+        else if(data.substring(0, 3).equals("edd")){
+            Log.e("Get Caption: ","1");
+            saveEarthData(data.substring(3));
+        }
+    }
+
+    private void getEarthByDate(String data){
         try {
             JSONArray jsonArray = new JSONArray(data);
-            List<String> dates = new ArrayList<>();
+            EarthData earthData;
+            Log.e("DB Length",String.valueOf(jsonArray.length()));
             for (int i = 0; i < jsonArray.length(); i++){
                 JSONObject obj = jsonArray.getJSONObject(i);
-                dates.add(obj.getString("date"));
-                Log.e("Dates",obj.getString("date"));
+                apiRepo.getEarthData(obj.getString("date"));
+                earthData = new EarthData(obj.getString("date"));
+                earthViewModel.insert(earthData);
             }
 
-            Log.e("Dates",dates.toString());
 //            Picasso.get().
 //                    load(url).
 //                    into(earthImage);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
+
+    private void saveEarthData(String data){
+        Log.e("Get Caption: ","2");
+        //@NonNull String date, @NonNull String identifier, @NonNull String caption, @NonNull String image
+        EarthData earthData;
+        try {
+            Log.e("Get Caption: ","3");
+            JSONObject obj = new JSONObject(data);
+            Log.e("Get Caption: ",obj.getString("caption"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

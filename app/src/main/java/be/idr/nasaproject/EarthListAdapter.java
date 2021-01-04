@@ -20,7 +20,7 @@ public class EarthListAdapter extends ListAdapter<EarthData, EarthViewHolder>  {
     @Override
     public void onBindViewHolder(EarthViewHolder holder, int position) {
         EarthData current = getItem(position);
-        holder.bind(current.getDate());
+        holder.bind(current);
     }
 
     static class WordDiff extends DiffUtil.ItemCallback<EarthData> {

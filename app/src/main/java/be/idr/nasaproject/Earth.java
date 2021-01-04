@@ -14,6 +14,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Date;
+
 public class Earth extends AppCompatActivity implements APIRepo.OnApiDataDownloadedCallback{
 
     private ImageView earthImage;
@@ -26,8 +28,6 @@ public class Earth extends AppCompatActivity implements APIRepo.OnApiDataDownloa
         setContentView(R.layout.activity_earth);
 
         earthImage = findViewById(R.id.earthImage);
-
-
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         final EarthListAdapter adapter = new EarthListAdapter(new EarthListAdapter.WordDiff());
@@ -51,7 +51,6 @@ public class Earth extends AppCompatActivity implements APIRepo.OnApiDataDownloa
             getEarthByDate(data.substring(3));
         }
         else if(data.substring(0, 3).equals("edd")){
-            Log.e("Get Caption: ","1");
             saveEarthData(data.substring(3));
         }
     }
@@ -59,34 +58,38 @@ public class Earth extends AppCompatActivity implements APIRepo.OnApiDataDownloa
     private void getEarthByDate(String data){
         try {
             JSONArray jsonArray = new JSONArray(data);
-            EarthData earthData;
-            Log.e("DB Length",String.valueOf(jsonArray.length()));
             for (int i = 0; i < jsonArray.length(); i++){
                 JSONObject obj = jsonArray.getJSONObject(i);
                 apiRepo.getEarthData(obj.getString("date"));
-                earthData = new EarthData(obj.getString("date"));
-                earthViewModel.insert(earthData);
             }
-
-//            Picasso.get().
-//                    load(url).
-//                    into(earthImage);
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
     private void saveEarthData(String data){
-        Log.e("Get Caption: ","2");
-        //@NonNull String date, @NonNull String identifier, @NonNull String caption, @NonNull String image
-        EarthData earthData;
         try {
-            Log.e("Get Caption: ","3");
-            JSONObject obj = new JSONObject(data);
-            Log.e("Get Caption: ",obj.getString("caption"));
+            JSONArray jsonArray = new JSONArray(data);
+            EarthData earthData;
+            for (int i = 0; i < jsonArray.length(); i++){
+                JSONObject obj = jsonArray.getJSONObject(i);
+
+                String identifier = obj.getString("identifier");
+                String caption = obj.getString("caption");
+                String image = obj.getString("image");
+                String date = obj.getString("date");
+
+                // I know this is ugly, but the deadline's getting awfully close
+                String year = date.substring(0,4);
+                String month = date.substring(5,7);
+                String day = date.substring(8,10);
+                String URL = "https://epic.gsfc.nasa.gov/archive/natural/" + year + "/" + month + "/" + day + "/png/" + image + ".png";
+                earthData = new EarthData(date, identifier, caption, URL);
+                earthViewModel.insert(earthData);
+            }
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
-
 }

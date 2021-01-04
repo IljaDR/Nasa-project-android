@@ -64,7 +64,7 @@ public class APIRepo {
     }
 
     public void getEarthDates(){
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, "https://api.nasa.gov/EPIC/api/natural/all?api_key="+getRandomKey(),
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, "https://epic.gsfc.nasa.gov/api/natural/all",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -84,7 +84,7 @@ public class APIRepo {
 
     public void getEarthData(String date){
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, "https://api.nasa.gov/EPIC/api/natural/date/"+date+"?api-key="+getRandomKey(),
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, "https://epic.gsfc.nasa.gov/api/natural/date/"+date+"?api_key="+getRandomKey(),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -98,6 +98,8 @@ public class APIRepo {
                 Log.e("API Log:","That didn't work!");
             }
         });
+
+        queue.add(stringRequest);
     }
 
     private String getRandomKey(){

@@ -28,7 +28,8 @@ public class APIRepo {
     private List<String> APIKeys = new ArrayList<>();
 
     public APIRepo(Context context){
-        // There's a very low limit of 1000 API calls per hour, while you need at least 1600 to even know where to get the images. You can request higher limits, but I doubt they'd respond quickly in the weekend.
+        // There's a very low limit of 1000 API calls per hour, while you need at least 1600 to even know where to get the images.
+        // Obviously it would be better to request bigger limits, but this is will work well enough for a small project.
         APIKeys.add("Lb7LHAfJEqP9slE5fulgsdezh2kNcojXUhJsZgiF");
         APIKeys.add("YyhqUTSJ3HzzD1zetF2RdQfsmtzj4pynSbbmOHl2");
         APIKeys.add("dk4Pnjtb10CoH5ZhsLb9UF01m2MqYASLP2Er7XSd");
@@ -75,7 +76,7 @@ public class APIRepo {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("API Log:","That didn't work!");
+                Log.e("API Log:", String.valueOf(error));
             }
         });
 
@@ -95,7 +96,7 @@ public class APIRepo {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("API Log:","That didn't work!");
+                Log.e("API Log:", String.valueOf(error));
             }
         });
 

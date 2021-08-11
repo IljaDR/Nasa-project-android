@@ -8,40 +8,48 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
-public class Earth extends AppCompatActivity implements APIRepo.OnApiDataDownloadedCallback{
-
-    private ImageView earthImage;
+public class Earth extends AppCompatActivity implements APIRepo.OnApiDataDownloadedCallback, EarthListAdapter.ItemClickListener {
     private EarthViewModel earthViewModel;
     private APIRepo apiRepo;
+    EarthListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_earth);
 
-        earthImage = findViewById(R.id.earthImage);
-
-        RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        final EarthListAdapter adapter = new EarthListAdapter(new EarthListAdapter.WordDiff());
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
-
         earthViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(EarthViewModel.class);
 
         earthViewModel.getAllDates().observe(this, dates -> {
-            adapter.submitList(dates);
+            RecyclerView recyclerView = findViewById(R.id.recyclerview);
+            recyclerView.setLayoutManager(new GridLayoutManager(this,2));
+            adapter = new EarthListAdapter(this, dates);
+            adapter.setClickListener(this);
+            recyclerView.setAdapter(adapter);
         });
 
         apiRepo = new APIRepo(this);
         apiRepo.getEarthDates();
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+        Toast.makeText(this, "You clicked " + adapter.getItem(position).getDate() + " on row number " + position, Toast.LENGTH_SHORT).show();
     }
 
 
@@ -77,18 +85,22 @@ public class Earth extends AppCompatActivity implements APIRepo.OnApiDataDownloa
                 String identifier = obj.getString("identifier");
                 String caption = obj.getString("caption");
                 String image = obj.getString("image");
-                String date = obj.getString("date");
+                String dateString = obj.getString("date");
+                Date date = new SimpleDateFormat("yyyy-MM-dd").parse(dateString);
 
-                // I know this is ugly, but the deadline's getting awfully close
-                String year = date.substring(0,4);
-                String month = date.substring(5,7);
-                String day = date.substring(8,10);
-                String URL = "https://epic.gsfc.nasa.gov/archive/natural/" + year + "/" + month + "/" + day + "/png/" + image + ".png";
-                earthData = new EarthData(date, identifier, caption, URL);
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(date);
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH) + 1;
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+                String formattedDay = day < 10 ? "0" + String.valueOf(day) : String.valueOf(day);
+                String formattedMonth = month < 10 ? "0" + String.valueOf(month) : String.valueOf(month);
+                String URL = "https://epic.gsfc.nasa.gov/archive/natural/" + year + "/" + formattedMonth + "/" + formattedDay + "/png/" + image + ".png";
+                earthData = new EarthData(dateString, identifier, caption, URL);
                 earthViewModel.insert(earthData);
             }
 
-        } catch (JSONException e) {
+        } catch (JSONException | ParseException e) {
             e.printStackTrace();
         }
     }

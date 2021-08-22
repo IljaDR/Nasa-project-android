@@ -14,7 +14,7 @@ import java.util.concurrent.Executors;
 @Database(entities = {EarthData.class}, version = 1, exportSchema = false)
 abstract class EarthRoomDatabase extends RoomDatabase {
 
-    abstract EarthDateDao earthDateDao();
+    abstract EarthDataDao earthDateDao();
 
     private static volatile EarthRoomDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
@@ -41,7 +41,7 @@ abstract class EarthRoomDatabase extends RoomDatabase {
             super.onCreate(db);
 
             databaseWriteExecutor.execute(() -> {
-                EarthDateDao dao = INSTANCE.earthDateDao();
+                EarthDataDao dao = INSTANCE.earthDateDao();
                 dao.deleteAll();
 
 //                EarthDate earthDate = new EarthDate("Hello");

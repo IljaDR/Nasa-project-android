@@ -31,4 +31,8 @@ public class EarthViewModel extends AndroidViewModel {
     void insert(EarthData earthData){
         repository.insert(earthData);
     }
+
+    void addRating(EarthData.Rating rating, String identifier){
+        repository.addRating(rating, identifier);
+    }
 }

@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 public class DetailFragment extends Fragment {
 
     interface onRatingListener{
-        void onRating(String rating);
+        void onRating(EarthData.Rating rating, String identifier);
     }
 
     private onRatingListener onRatingListener;

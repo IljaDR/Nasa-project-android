@@ -8,15 +8,15 @@ import java.util.List;
 
 class EarthRepository {
 
-    private EarthDateDao earthDateDao;
+    private EarthDataDao earthDataDao;
     private LiveData<List<EarthData>> allDates;
     private LiveData<Integer> count;
 
     EarthRepository(Application application){
         EarthRoomDatabase db = EarthRoomDatabase.getDatabase(application);
-        earthDateDao = db.earthDateDao();
-        allDates = earthDateDao.getDateByRecency();
-        count = earthDateDao.getCount();
+        earthDataDao = db.earthDateDao();
+        allDates = earthDataDao.getDateByRecency();
+        count = earthDataDao.getCount();
     }
 
     LiveData<List<EarthData>> getAllDates(){
@@ -29,15 +29,21 @@ class EarthRepository {
 
     void insert(EarthData earthData){
         EarthRoomDatabase.databaseWriteExecutor.execute(() -> {
-            earthDateDao.insert(earthData);
+            earthDataDao.insert(earthData);
         });
     }
 
     void insertList(List<EarthData> earthData){
         for(EarthData data : earthData){
             EarthRoomDatabase.databaseWriteExecutor.execute(() -> {
-                earthDateDao.insert(data);
+                earthDataDao.insert(data);
             });
         }
+    }
+
+    void addRating(EarthData.Rating rating, String identifier){
+        EarthRoomDatabase.databaseWriteExecutor.execute(() -> {
+            earthDataDao.addRating(rating, identifier);
+        });
     }
 }

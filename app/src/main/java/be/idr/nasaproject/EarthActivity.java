@@ -33,11 +33,12 @@ public class EarthActivity extends AppCompatActivity implements APIRepo.OnApiDat
     RecyclerView recyclerView;
     JSONArray APIData;
     int APIIndex = 0;
-    Parcelable recylerViewState;
 
+    static final String EARTH_IDENTIFIER = " be.idr.nasaproject.EARTH_IDENTIFIER";
     static final String EARTH_DATE = " be.idr.nasaproject.EARTH_DATE";
     static final String EARTH_CAPTION = " be.idr.nasaproject.EARTH_CAPTION";
     static final String EARTH_IMAGE_URL = " be.idr.nasaproject.EARTH_IMAGE_URL";
+    static final String EARTH_RATING = " be.idr.nasaproject.EARTH_RATING";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,9 +53,6 @@ public class EarthActivity extends AppCompatActivity implements APIRepo.OnApiDat
         earthViewModel.getAllDates().observe(this, dates -> {
             recyclerView = findViewById(R.id.recyclerview);
             recyclerView.setLayoutManager(new GridLayoutManager(this,2));
-            adapter = new EarthListAdapter(this, dates);
-            adapter.setClickListener(this);
-            recyclerView.setAdapter(adapter);
             GridLayoutManager layoutManager = ((GridLayoutManager)recyclerView.getLayoutManager());
             recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
@@ -62,12 +60,12 @@ public class EarthActivity extends AppCompatActivity implements APIRepo.OnApiDat
                     super.onScrolled(recyclerView, dx, dy);
                     if(APIData != null){
                         // I can't find a reliable way to tell how far along the recyclerview I am, this is the best I could figure out
-                        // but usually it completely messes up quickly and it will nog longer work...
-                        Log.e("Scroll log:", String.valueOf(layoutManager.findLastCompletelyVisibleItemPosition()));
+                        // but sometimes it completely messes up and it will nog longer work...
+//                        Log.e("Scroll log:", String.valueOf(layoutManager.findLastCompletelyVisibleItemPosition()));
                         try {
                             int index = 4 + layoutManager.findLastVisibleItemPosition()/20;
-                            Log.e("Scroll log:", "Index: " + String.valueOf(index));
-                            Log.e("Scroll log:", "APIindex: " + String.valueOf(APIIndex));
+//                            Log.e("Scroll log:", "Index: " + String.valueOf(index));
+//                            Log.e("Scroll log:", "APIindex: " + String.valueOf(APIIndex));
                             if (index > APIIndex){
                                 apiRepo.getEarthData(APIData.getJSONObject(index).getString("date"));
                                 APIIndex++;
@@ -79,6 +77,11 @@ public class EarthActivity extends AppCompatActivity implements APIRepo.OnApiDat
                     }
                 }
             });
+            adapter = new EarthListAdapter(this, dates);
+            adapter.setClickListener(this);
+            adapter.setStateRestorationPolicy(RecyclerView.Adapter.StateRestorationPolicy.ALLOW);
+            recyclerView.setAdapter(adapter);
+
         });
 
         earthViewModel.logDateCount().observe(this, count -> {
@@ -90,9 +93,11 @@ public class EarthActivity extends AppCompatActivity implements APIRepo.OnApiDat
     @Override
     public void onItemClick(View view, int position) {
         Intent intent = new Intent(this, EarthDetailActivity.class);
+        intent.putExtra(EARTH_IDENTIFIER, adapter.getItem(position).getIdentifier());
         intent.putExtra(EARTH_DATE, adapter.getItem(position).getDate());
         intent.putExtra(EARTH_CAPTION, adapter.getItem(position).getCaption());
         intent.putExtra(EARTH_IMAGE_URL, adapter.getItem(position).getImgURL());
+        intent.putExtra(EARTH_RATING, adapter.getItem(position).getRating());
         startActivity(intent);
 //        Toast.makeText(this, "You clicked " + adapter.getItem(position).getDate() + " on row number " + position, Toast.LENGTH_SHORT).show();
     }

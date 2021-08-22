@@ -5,11 +5,13 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.TypeConverters;
 
 import java.util.List;
 
 @Dao
-public interface EarthDateDao {
+@TypeConverters({Converters.class})
+public interface EarthDataDao {
     @Query("SELECT * FROM earth_data ORDER BY date DESC")
     LiveData<List<EarthData>> getDateByRecency();
 
@@ -27,4 +29,7 @@ public interface EarthDateDao {
 
     @Query("DELETE FROM earth_data")
     void deleteAll();
+
+    @Query("UPDATE EARTH_DATA SET RATING =  :rating WHERE identifier = :identifier")
+    void addRating(EarthData.Rating rating, String identifier);
 }

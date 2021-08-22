@@ -1,4 +1,4 @@
-package be.idr.nasaproject;
+package be.idr.nasaproject.UI;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,9 +8,11 @@ import android.widget.ImageView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import be.idr.nasaproject.DB.EarthData;
+import be.idr.nasaproject.R;
 
 public class EarthListAdapter extends RecyclerView.Adapter<EarthListAdapter.ViewHolder> {
 
@@ -19,7 +21,7 @@ public class EarthListAdapter extends RecyclerView.Adapter<EarthListAdapter.View
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    EarthListAdapter(Context context, List<EarthData> data) {
+    public EarthListAdapter(Context context, List<EarthData> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
         this.setStateRestorationPolicy(StateRestorationPolicy.ALLOW);
@@ -69,12 +71,12 @@ public class EarthListAdapter extends RecyclerView.Adapter<EarthListAdapter.View
     }
 
     // convenience method for getting data at click position
-    EarthData getItem(int id) {
+    public EarthData getItem(int id) {
         return mData.get(id);
     }
 
     // allows clicks events to be caught
-    void setClickListener(ItemClickListener itemClickListener) {
+    public void setClickListener(ItemClickListener itemClickListener) {
         this.mClickListener = itemClickListener;
     }
 

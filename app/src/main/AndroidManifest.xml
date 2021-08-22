@@ -13,19 +13,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EarthDetailActivity" android:parentActivityName=".EarthActivity">
+        <activity android:name=".UI.EarthDetailActivity" android:parentActivityName=".UI.EarthActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".EarthActivity" />
+                android:value=".UI.EarthActivity" />
 
         </activity>
-        <activity android:name=".EarthActivity" android:parentActivityName=".MainActivity">
+        <activity android:name=".UI.EarthActivity" android:parentActivityName=".UI.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".UI.MainActivity" />
 
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".UI.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

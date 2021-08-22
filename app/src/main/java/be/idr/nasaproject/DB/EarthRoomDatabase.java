@@ -1,4 +1,4 @@
-package be.idr.nasaproject;
+package be.idr.nasaproject.DB;
 
 import android.content.Context;
 
@@ -12,7 +12,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @Database(entities = {EarthData.class}, version = 1, exportSchema = false)
-abstract class EarthRoomDatabase extends RoomDatabase {
+public abstract class EarthRoomDatabase extends RoomDatabase {
 
     abstract EarthDataDao earthDateDao();
 

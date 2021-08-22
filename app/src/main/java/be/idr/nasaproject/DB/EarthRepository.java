@@ -1,4 +1,4 @@
-package be.idr.nasaproject;
+package be.idr.nasaproject.DB;
 
 import android.app.Application;
 
@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-class EarthRepository {
+public class EarthRepository {
 
     private EarthDataDao earthDataDao;
     private LiveData<List<EarthData>> allDates;

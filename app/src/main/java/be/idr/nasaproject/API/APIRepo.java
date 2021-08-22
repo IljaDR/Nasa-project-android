@@ -1,4 +1,4 @@
-package be.idr.nasaproject;
+package be.idr.nasaproject.API;
 
 import android.app.Application;
 import android.content.Context;

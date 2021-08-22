@@ -1,10 +1,12 @@
-package be.idr.nasaproject;
+package be.idr.nasaproject.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import be.idr.nasaproject.R;
 
 public class MainActivity extends AppCompatActivity{
     @Override

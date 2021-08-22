@@ -1,21 +1,15 @@
-package be.idr.nasaproject;
+package be.idr.nasaproject.UI;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.Toast;
-
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,6 +19,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
+import be.idr.nasaproject.API.APIRepo;
+import be.idr.nasaproject.DB.EarthData;
+import be.idr.nasaproject.DB.EarthViewModel;
+import be.idr.nasaproject.R;
 
 public class EarthActivity extends AppCompatActivity implements APIRepo.OnApiDataDownloadedCallback, EarthListAdapter.ItemClickListener {
     private EarthViewModel earthViewModel;

@@ -1,7 +1,6 @@
-package be.idr.nasaproject;
+package be.idr.nasaproject.DB;
 
 import android.app.Application;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -20,19 +19,19 @@ public class EarthViewModel extends AndroidViewModel {
         allDates = repository.getAllDates();
     }
 
-    LiveData<List<EarthData>> getAllDates(){
+    public LiveData<List<EarthData>> getAllDates(){
         return allDates;
     }
 
-    LiveData<Integer> logDateCount(){
+    public LiveData<Integer> logDateCount(){
         return repository.getDateCount();
     }
 
-    void insert(EarthData earthData){
+    public void insert(EarthData earthData){
         repository.insert(earthData);
     }
 
-    void addRating(EarthData.Rating rating, String identifier){
+    public void addRating(EarthData.Rating rating, String identifier){
         repository.addRating(rating, identifier);
     }
 }

@@ -1,4 +1,4 @@
-package be.idr.nasaproject;
+package be.idr.nasaproject.DB;
 
 import androidx.room.TypeConverter;
 

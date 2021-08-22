@@ -1,4 +1,4 @@
-package be.idr.nasaproject;
+package be.idr.nasaproject.UI;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -7,13 +7,15 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.StringDef;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
+
+import be.idr.nasaproject.DB.EarthData;
+import be.idr.nasaproject.DB.EarthViewModel;
+import be.idr.nasaproject.R;
 
 public class EarthDetailActivity extends AppCompatActivity implements DetailFragment.onRatingListener {
     private EarthViewModel earthViewModel;
@@ -64,7 +66,7 @@ public class EarthDetailActivity extends AppCompatActivity implements DetailFrag
 
     @Override
     public void onRating(EarthData.Rating rating, String identifier) {
-        Toast.makeText(this, "You clicked " + rating, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "You clicked " + rating, Toast.LENGTH_SHORT).show();
         if(rating.equals(EarthData.Rating.LIKE)){
             btnLike.setBackgroundColor(Color.parseColor("#09de1e"));
             btnDislike.setBackgroundColor(getResources().getColor(R.color.buttonColor));

@@ -10,15 +10,21 @@ class EarthRepository {
 
     private EarthDateDao earthDateDao;
     private LiveData<List<EarthData>> allDates;
+    private LiveData<Integer> count;
 
     EarthRepository(Application application){
         EarthRoomDatabase db = EarthRoomDatabase.getDatabase(application);
         earthDateDao = db.earthDateDao();
         allDates = earthDateDao.getDateByRecency();
+        count = earthDateDao.getCount();
     }
 
     LiveData<List<EarthData>> getAllDates(){
         return allDates;
+    }
+
+    LiveData<Integer> getDateCount(){
+        return count;
     }
 
     void insert(EarthData earthData){

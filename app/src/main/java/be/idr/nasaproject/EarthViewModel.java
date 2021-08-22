@@ -1,6 +1,7 @@
 package be.idr.nasaproject;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -21,6 +22,10 @@ public class EarthViewModel extends AndroidViewModel {
 
     LiveData<List<EarthData>> getAllDates(){
         return allDates;
+    }
+
+    LiveData<Integer> logDateCount(){
+        return repository.getDateCount();
     }
 
     void insert(EarthData earthData){

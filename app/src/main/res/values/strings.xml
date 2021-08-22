@@ -7,4 +7,8 @@
     <string name="picture_of_mars">Picture of Mars</string>
     <string name="picture_of_earth">Picture of Earth</string>
     <string name="picture_of_a_nebula">Picture of a nebula</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="date">Date</string>
+    <string name="caption">Caption</string>
 </resources>

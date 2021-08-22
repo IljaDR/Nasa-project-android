@@ -16,6 +16,12 @@ public interface EarthDateDao {
     @Query("SELECT * FROM earth_data ORDER BY date ASC LIMIT 1")
     LiveData<List<EarthData>> getMostRecentDate();
 
+    @Query("SELECT * FROM earth_data ORDER BY date DESC LIMIT 1")
+    LiveData<List<EarthData>> getOldestDate();
+
+    @Query("SELECT COUNT(*) FROM earth_data")
+    LiveData<Integer> getCount();
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(EarthData date);
 

@@ -1,17 +1,10 @@
 package be.idr.nasaproject;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.DiffUtil;
-import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -29,6 +22,7 @@ public class EarthListAdapter extends RecyclerView.Adapter<EarthListAdapter.View
     EarthListAdapter(Context context, List<EarthData> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
+        this.setStateRestorationPolicy(StateRestorationPolicy.ALLOW);
     }
 
     // inflates the row layout from xml when needed
@@ -43,7 +37,6 @@ public class EarthListAdapter extends RecyclerView.Adapter<EarthListAdapter.View
     public void onBindViewHolder(ViewHolder holder, int position) {
         EarthData earthData = mData.get(position);
 //        holder.image.setText(earthData.getImgURL());
-        Log.e("URL", earthData.getImgURL());
         // glide seems slightly faster than picasso
         Glide.with(holder.itemView.getContext()).load(earthData.getImgURL()).into(holder.image);
 //        Picasso.get().
@@ -89,4 +82,5 @@ public class EarthListAdapter extends RecyclerView.Adapter<EarthListAdapter.View
     public interface ItemClickListener {
         void onItemClick(View view, int position);
     }
+
 }

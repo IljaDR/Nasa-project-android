@@ -84,7 +84,7 @@ public class EarthActivity extends AppCompatActivity implements APIRepo.OnApiDat
         });
 
         earthViewModel.logDateCount().observe(this, count -> {
-            Log.e("Count", String.valueOf(count));
+//            Log.e("Count", String.valueOf(count));
         });
 
     }

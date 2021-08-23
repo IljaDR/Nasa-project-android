@@ -37,7 +37,7 @@ public class EarthDetailActivity extends AppCompatActivity implements DetailFrag
         String earthImageURL = intent.getStringExtra(EarthActivity.EARTH_IMAGE_URL);
         EarthData.Rating rating = (EarthData.Rating)intent.getSerializableExtra(EarthActivity.EARTH_RATING);
 
-        Log.e("Rating", String.valueOf(rating));
+//        Log.e("Rating", String.valueOf(rating));
 
         txtCaption = findViewById(R.id.txtCaption);
         txtDate = findViewById(R.id.txtDate);

@@ -33,11 +33,11 @@ public class EarthActivity extends AppCompatActivity implements APIRepo.OnApiDat
     JSONArray APIData;
     int APIIndex = 0;
 
-    static final String EARTH_IDENTIFIER = " be.idr.nasaproject.EARTH_IDENTIFIER";
-    static final String EARTH_DATE = " be.idr.nasaproject.EARTH_DATE";
-    static final String EARTH_CAPTION = " be.idr.nasaproject.EARTH_CAPTION";
-    static final String EARTH_IMAGE_URL = " be.idr.nasaproject.EARTH_IMAGE_URL";
-    static final String EARTH_RATING = " be.idr.nasaproject.EARTH_RATING";
+    public static final String EARTH_IDENTIFIER = " be.idr.nasaproject.EARTH_IDENTIFIER";
+    public static final String EARTH_DATE = " be.idr.nasaproject.EARTH_DATE";
+    public static final String EARTH_CAPTION = " be.idr.nasaproject.EARTH_CAPTION";
+    public static final String EARTH_IMAGE_URL = " be.idr.nasaproject.EARTH_IMAGE_URL";
+    public static final String EARTH_RATING = " be.idr.nasaproject.EARTH_RATING";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
